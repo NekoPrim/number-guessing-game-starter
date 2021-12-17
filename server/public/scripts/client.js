@@ -33,6 +33,7 @@ function onSubmit(event) {
     })
 
   $('.guessInput').val('');
+
 }
 
 function refresh() {
@@ -45,6 +46,13 @@ function refresh() {
     .then((response) => {
       console.log('AJAX request complete!', response);
       render(response.history);
+
+      if (response.winner !== '') {
+        alert(`Congrats ${response.winner}`);
+        $('#kayTable tbody').empty();
+        $('#jamesTable tbody').empty();
+        $('#dezTable tbody').empty();
+      } 
       // console.log(response.round);
       $('#roundCountVal').text(response.round);
     });
@@ -95,6 +103,8 @@ function render(guessHistory) {
           `)
 
   }
+
+  
 }
   //duplicate for other group members
   // $('#kayTable tbody').empty();
